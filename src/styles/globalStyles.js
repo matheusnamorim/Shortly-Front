@@ -28,6 +28,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	font-family: 'Lexend Deca', sans-serif;
+	min-height: 100vh;
 }
 ol, ul {
 	list-style: none;
@@ -43,6 +45,9 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+*{
+	box-sizing: border-box;
 }
 `;
 
