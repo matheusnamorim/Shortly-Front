@@ -31,4 +31,16 @@ function getUser(){
     return promise;
 }
 
-export {listRanking, sign_Up, sign_In, getUser};
+function myUrls(){
+    const config = createHeaders();
+    const promise = axios.get(`${BASE_URL}/users/me`, config);
+    return promise;
+}
+
+function shorten(body){
+    const config = createHeaders();
+    const promise = axios.post(`${BASE_URL}/urls/shorten`, body, config);
+    return promise;
+}
+
+export {listRanking, sign_Up, sign_In, getUser, myUrls, shorten};
