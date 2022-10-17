@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Container from "../../styles/Container";
 import { Logo, Form } from "../../styles/styles";
 import logo from '../../assets/Logo.png';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ThreeDots } from "react-loader-spinner";
 import { sign_Up } from "../services/shortly";
 

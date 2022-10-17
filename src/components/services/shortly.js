@@ -2,6 +2,14 @@ import axios from 'axios';
 
 const BASE_URL = 'https://shortlyamorim.herokuapp.com';
 
+function createHeaders() {
+    const auth = JSON.parse(localStorage.getItem('shortly'));
+    const config = {
+        headers:{Authorization: `Bearer ${auth.token}`}
+    }
+    return config;
+}
+
 function listRanking(){
     const promise = axios.get(`${BASE_URL}/ranking`);
     return promise;
@@ -12,4 +20,15 @@ function sign_Up(body){
     return promise;
 }
 
-export {listRanking, sign_Up};
+function sign_In(body){
+    const promise = axios.post(`${BASE_URL}/signin`, body);
+    return promise;
+}
+
+function getUser(){
+    const config = createHeaders();
+    const promise = axios.get(`${BASE_URL}/user`, config);
+    return promise;
+}
+
+export {listRanking, sign_Up, sign_In, getUser};
