@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export default function Container({children}){
-    return <Wrapper>{children}</Wrapper>
+export default function Container({children, aligner}){
+    return <Wrapper aligner={aligner}>{children}</Wrapper>
 };
 
 const Wrapper = styled.div`
@@ -19,4 +19,12 @@ const Wrapper = styled.div`
         cursor: pointer;
         color: #000000;
     }
+
+    ${(props) => {
+        if(props.aligner){
+            return`
+                justify-content: start;
+            `;
+        }
+    }}
 `;

@@ -47,4 +47,43 @@ const Ranking = styled.div`
     }
 `;
 
-export { Logo, Trophy, Ranking };
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+    input{
+        margin-top: 25px;
+        width: 70vw;
+        height: 60px;
+        border: 1px solid rgba(120, 177, 89, 0.25);
+        box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
+        border-radius: 12px;
+        padding-left: 20px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #9C9C9C;
+    }
+    input::placeholder{
+        color: #9C9C9C;
+        font-size: 14px;
+    }
+
+    button{
+        margin-top: 60px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 180px;
+        height: 60px;
+        background-color: #5D9040;
+        font-size: 14px;
+        font-weight: 700;
+        color: #FFFFFF;
+        border: none;
+        cursor: pointer;
+    }
+`;
+
+export { Logo, Trophy, Ranking, Form };
