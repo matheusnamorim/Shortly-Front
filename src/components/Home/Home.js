@@ -52,7 +52,7 @@ export default function Home(){
     function deleteUrl(id){
         if(window.confirm('Deseja realmente excluir essa URL?')){
             delete_Url(id).then(() => {
-                window.location.reload();
+                setReload(!reload);
             }).catch((error) => {
                 console.log(error);
             })
