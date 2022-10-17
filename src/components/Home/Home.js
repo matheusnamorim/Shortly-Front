@@ -3,7 +3,7 @@ import NavBar from '../../styles/NavBar';
 import Container from '../../styles/Container';
 import { Logo} from '../../styles/styles.js';
 import logo from '../../assets/Logo.png';
-import { getUser, myUrls, shorten } from '../services/shortly';
+import { getUser, myUrls, shorten, delete_Url } from '../services/shortly';
 import styled from 'styled-components';
 import {AiTwotoneDelete} from 'react-icons/ai';
 
@@ -12,7 +12,6 @@ export default function Home(){
     const [name, setName] = useState('');
     const [listUrls, setListUrls] = useState([]);
     const [url, setUrl] = useState('');
-    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         getUser()
@@ -29,7 +28,7 @@ export default function Home(){
             if(error.response.status === 401) alert('Token inválidos!');
             if(error.response.status === 404) alert('Usuário não autenticado!');
         });
-    }, [reload]);
+    }, []);
 
     function shortenUrl(event){
         event.preventDefault();
@@ -37,11 +36,22 @@ export default function Home(){
         shorten({
             url,
         }).then((data) => {
-            console.log(data.data);
+            window.location.reload();
         }).catch((error) => {
             console.log(error);
         })
     }
+
+    function deleteUrl(id){
+        if(window.confirm('Deseja realmente excluir essa URL?')){
+            delete_Url(id).then(() => {
+                window.location.reload();
+            }).catch((error) => {
+                console.log(error);
+            })
+        }
+    };
+
     return (
         <>
             <NavBar>
@@ -69,7 +79,7 @@ export default function Home(){
                                 <p>{value.shortUrl}</p>
                                 <p>Quantidade de visitantes: {value.visitCount}</p>
                             </div>
-                            <span>
+                            <span onClick={() => deleteUrl(value.id)}>
                                 <AiTwotoneDelete color="red" size='25px'/>
                             </span>
                         </Urls>

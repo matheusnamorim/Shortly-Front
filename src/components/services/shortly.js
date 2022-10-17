@@ -41,6 +41,12 @@ function shorten(body){
     const config = createHeaders();
     const promise = axios.post(`${BASE_URL}/urls/shorten`, body, config);
     return promise;
+};
+
+function delete_Url(body){
+    const config = createHeaders();
+    const promise = axios.delete(`${BASE_URL}/urls/${body}`, config);
+    return promise;
 }
 
-export {listRanking, sign_Up, sign_In, getUser, myUrls, shorten};
+export {listRanking, sign_Up, sign_In, getUser, myUrls, shorten, delete_Url};
