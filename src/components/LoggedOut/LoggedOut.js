@@ -1,11 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NavBar from '../../styles/NavBar';
 import Container from '../../styles/Container';
 import { Logo, Trophy, Ranking } from '../../styles/styles.js';
 import logo from '../../assets/Logo.png';
 import trophy from '../../assets/Vector.svg';
+import { listRanking } from '../services/shortly';
 
 export default function LoggedOut(){
+
+    const [list, setList] = useState([]);
+
+    useEffect(() => {
+        listRanking().then((data) => {
+            setList(data.data);
+        }).catch((error) => {
+            console.log(error.response.status);
+        });
+        
+    }, []);
+
     return (
         <>
             <NavBar>
@@ -24,12 +37,10 @@ export default function LoggedOut(){
                     <p>Ranking</p>
                 </Trophy>
                 <Ranking>
-                    <p>a</p>
-                    <p>a</p>
-                    <p>a</p>
-                    <p>a</p>
-                    <p>a</p>
-                    <p>a</p>
+                    {list.map((value, index) => 
+                    <p key={index}>
+                        {index+1}. {value.name} - {value.linksCount} links - {value.visitCount} visualizações
+                    </p>)}
                 </Ranking>
                 <h2>Crie sua conta para usar nosso serviço!</h2>
             </Container>
