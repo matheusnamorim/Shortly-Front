@@ -6,6 +6,7 @@ export default function Container({children}){
 
 const Wrapper = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
