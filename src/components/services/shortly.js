@@ -49,4 +49,9 @@ function delete_Url(body){
     return promise;
 };
 
-export {listRanking, sign_Up, sign_In, getUser, myUrls, shorten, delete_Url};
+function exit(){
+    localStorage.setItem('shortly', JSON.stringify(''));
+    window.location.reload();
+}
+
+export {listRanking, sign_Up, sign_In, getUser, myUrls, shorten, delete_Url, exit};

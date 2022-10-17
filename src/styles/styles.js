@@ -86,4 +86,13 @@ const Form = styled.form`
     }
 `;
 
-export { Logo, Trophy, Ranking, Form };
+const Name = styled.p`
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    color: #5D9040;
+    font-size: 14px;
+    font-weight: 400;
+`;
+
+export { Logo, Trophy, Ranking, Form, Name };

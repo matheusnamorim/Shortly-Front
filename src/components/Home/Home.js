@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import NavBar from '../../styles/NavBar';
 import Container from '../../styles/Container';
-import { Logo} from '../../styles/styles.js';
+import { Logo, Name } from '../../styles/styles.js';
 import logo from '../../assets/Logo.png';
-import { getUser, myUrls, shorten, delete_Url } from '../services/shortly';
+import { getUser, myUrls, shorten, delete_Url, exit } from '../services/shortly';
 import styled from 'styled-components';
 import {AiTwotoneDelete} from 'react-icons/ai';
 import {useNavigate} from 'react-router-dom';
@@ -14,6 +14,7 @@ export default function Home(){
     const [name, setName] = useState('');
     const [listUrls, setListUrls] = useState([]);
     const [url, setUrl] = useState('');
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         getUser()
@@ -30,19 +31,23 @@ export default function Home(){
             if(error.response.status === 401) alert('Token inválidos!');
             if(error.response.status === 404) alert('Usuário não autenticado!');
         });
-    }, []);
+    }, [reload]);
+
+    setInterval(function(){
+        setReload(!reload);
+     }, 10000);
 
     function shortenUrl(event){
         event.preventDefault();
         
         shorten({
             url,
-        }).then((data) => {
-            window.location.reload();
+        }).then(() => {
+            setReload(!reload);
         }).catch((error) => {
             console.log(error);
-        })
-    }
+        });
+    };
 
     function deleteUrl(id){
         if(window.confirm('Deseja realmente excluir essa URL?')){
@@ -54,17 +59,12 @@ export default function Home(){
         }
     };
 
-    function exit(){
-        localStorage.setItem('shortly', JSON.stringify(''));
-        window.location.reload();
-    }
-
     return (
         <>
             <NavBar>
                 <div>
-                    <h1>Home</h1>
-                    <h1>Ranking</h1>
+                    <h1 onClick={() => navigate('/home')}>Home</h1>
+                    <h1 onClick={() => navigate('/ranking')}>Ranking</h1>
                     <h1 onClick={() => exit()}>Sair</h1>
                 </div>
             </NavBar> 
@@ -102,15 +102,6 @@ const Infos = styled.div`
     width: 100vw;
 `;
 
-const Name = styled.p`
-    position: absolute;
-    top: 70px;
-    left: 20px;
-    color: #5D9040;
-    font-size: 14px;
-    font-weight: 400;
-`;
-
 const FormUrl = styled.form`
 
     display: flex;
@@ -126,7 +117,7 @@ const FormUrl = styled.form`
         font-weight: 400;
         padding-left: 20px;
         border: 1px solid rgba(120, 177, 89, 0.25);
-        box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
+        box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.52);
         border-radius: 12px;
     }
     input::placeholder{
