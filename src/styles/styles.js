@@ -70,7 +70,7 @@ const Form = styled.form`
     }
 
     button{
-        margin-top: 60px;
+        margin: 60px 0 100px 0;
         border-radius: 12px;
         display: flex;
         justify-content: center;

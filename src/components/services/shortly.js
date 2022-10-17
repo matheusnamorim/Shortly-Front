@@ -7,4 +7,9 @@ function listRanking(){
     return promise;
 }
 
-export {listRanking};
+function sign_Up(body){
+    const promise = axios.post(`${BASE_URL}/signup`, body);
+    return promise;
+}
+
+export {listRanking, sign_Up};
