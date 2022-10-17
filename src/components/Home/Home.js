@@ -6,9 +6,11 @@ import logo from '../../assets/Logo.png';
 import { getUser, myUrls, shorten, delete_Url } from '../services/shortly';
 import styled from 'styled-components';
 import {AiTwotoneDelete} from 'react-icons/ai';
+import {useNavigate} from 'react-router-dom';
 
 export default function Home(){
 
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [listUrls, setListUrls] = useState([]);
     const [url, setUrl] = useState('');
@@ -52,13 +54,18 @@ export default function Home(){
         }
     };
 
+    function exit(){
+        localStorage.setItem('shortly', JSON.stringify(''));
+        window.location.reload();
+    }
+
     return (
         <>
             <NavBar>
                 <div>
                     <h1>Home</h1>
                     <h1>Ranking</h1>
-                    <h1>Sair</h1>
+                    <h1 onClick={() => exit()}>Sair</h1>
                 </div>
             </NavBar> 
             <Name>Seja bem-vindo(a), {name}!</Name>
@@ -96,7 +103,7 @@ const Infos = styled.div`
 `;
 
 const Name = styled.p`
-    position: fixed;
+    position: absolute;
     top: 70px;
     left: 20px;
     color: #5D9040;

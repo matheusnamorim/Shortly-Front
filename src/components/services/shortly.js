@@ -8,34 +8,34 @@ function createHeaders() {
         headers:{Authorization: `Bearer ${auth.token}`}
     }
     return config;
-}
+};
 
 function listRanking(){
     const promise = axios.get(`${BASE_URL}/ranking`);
     return promise;
-}
+};
 
 function sign_Up(body){
     const promise = axios.post(`${BASE_URL}/signup`, body);
     return promise;
-}
+};
 
 function sign_In(body){
     const promise = axios.post(`${BASE_URL}/signin`, body);
     return promise;
-}
+};
 
 function getUser(){
     const config = createHeaders();
     const promise = axios.get(`${BASE_URL}/user`, config);
     return promise;
-}
+};
 
 function myUrls(){
     const config = createHeaders();
     const promise = axios.get(`${BASE_URL}/users/me`, config);
     return promise;
-}
+};
 
 function shorten(body){
     const config = createHeaders();
@@ -47,6 +47,6 @@ function delete_Url(body){
     const config = createHeaders();
     const promise = axios.delete(`${BASE_URL}/urls/${body}`, config);
     return promise;
-}
+};
 
 export {listRanking, sign_Up, sign_In, getUser, myUrls, shorten, delete_Url};
