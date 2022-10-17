@@ -17,5 +17,6 @@ const Wrapper = styled.div`
         font-size: 36px;
         font-weight: 700;
         cursor: pointer;
+        color: #000000;
     }
 `;

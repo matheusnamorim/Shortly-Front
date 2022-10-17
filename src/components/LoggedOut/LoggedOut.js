@@ -5,6 +5,7 @@ import { Logo, Trophy, Ranking } from '../../styles/styles.js';
 import logo from '../../assets/Logo.png';
 import trophy from '../../assets/Vector.svg';
 import { listRanking } from '../services/shortly';
+import { Link } from 'react-router-dom';
 
 export default function LoggedOut(){
 
@@ -23,8 +24,8 @@ export default function LoggedOut(){
         <>
             <NavBar>
                 <div>
-                    <p>Entrar</p>
-                    <h1>Cadastrar-se</h1>
+                    <Link to='/signin' style={{ textDecoration: 'none' }}><p>Entrar</p></Link>
+                    <Link to='/signup' style={{ textDecoration: 'none' }}><h1>Cadastrar-se</h1></Link>
                 </div>
             </NavBar> 
              <Container>
@@ -42,7 +43,9 @@ export default function LoggedOut(){
                         {index+1}. {value.name} - {value.linksCount} links - {value.visitCount} visualizações
                     </p>)}
                 </Ranking>
-                <h2>Crie sua conta para usar nosso serviço!</h2>
+                <Link to='/signup' style={{ textDecoration: 'none' }}>
+                    <h2>Crie sua conta para usar nosso serviço!</h2>
+                </Link>      
             </Container>
         </>
     );
