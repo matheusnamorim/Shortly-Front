@@ -7,6 +7,14 @@ export default function Container({children}){
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    height: 65vh;
+
+    h2{
+        margin-top: 30px;
+        text-align: center;
+        font-size: 36px;
+        font-weight: 700;
+    }
 `;

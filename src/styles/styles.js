@@ -32,4 +32,12 @@ const Trophy = styled.div`
     }
 `;
 
-export { Logo, Trophy };
+const Ranking = styled.div`
+    width: 70%;
+    padding: 20px 40px;
+    border: 1px solid rgba(120, 177, 89, 0.25);
+    box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
+    border-radius: 24px 24px 0px 0px;
+`;
+
+export { Logo, Trophy, Ranking };
